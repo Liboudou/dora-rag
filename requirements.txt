@@ -10,8 +10,5 @@ python-dotenv
 pydantic
 pydantic-settings
 pyyaml
-pydantic
-pydantic-settings
-pyyaml
 loguru
 openai
