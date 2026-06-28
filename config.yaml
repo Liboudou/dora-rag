@@ -1,0 +1,36 @@
+data:
+  pdf_path: "data/DORA_Regulation_FR.pdf"
+  chunk_size: 512
+  chunk_overlap: 64
+
+qdrant:
+  location: ":memory:"  # Use in-memory storage for simplicity
+  collection_name: "dora_regulation"
+  vector_size: 1024
+  distance: "Cosine"
+
+embedding:
+  model_name: "BAAI/bge-m3"
+  device: "cpu"
+  batch_size: 32
+  normalize_embeddings: true
+
+llm:
+  provider: "openai"
+  model_name: "deepseek/deepseek-v4-flash"  # Using OpenRouter model name
+  temperature: 0.0
+  max_tokens: 2048
+  api_base: ""  # Will be set via OPENROUTER_API_BASE env var if needed
+  api_key: ""   # Will be set via OPENROUTER_API_KEY env var
+
+retrieval:
+  top_k: 5
+  use_hybrid_search: true
+  bm25_weight: 0.3
+  dense_weight: 0.7
+  use_reranker: false  # Set to true if you have a reranker model available
+
+server:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
